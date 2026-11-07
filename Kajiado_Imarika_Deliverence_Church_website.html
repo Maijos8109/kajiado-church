@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kajiado Imarika Deliverence Church | Welcoming All Home</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        church: {
+                            50: '#fcf8f6',
+                            100: '#f7edeb',
+                            200: '#efdcd7',
+                            500: '#9b4d38',
+                            600: '#853d2b',
+                            700: '#6e3021',
+                            800: '#5a271c',
+                            900: '#2c1510',
+                        },
+                        gold: {
+                            400: '#f1c40f',
+                            500: '#d4af37',
+                            600: '#b7950b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-church-500 selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-slate-900 text-slate-300 text-xs sm:text-sm py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-4">
+                <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-church-500"></i> 123 Faith Way, Springfield, IL</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-church-500"></i> Sundays at 8:00 AM & 11:00 AM</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a href="#services" class="hover:text-amber-400 transition-colors">Join Online Stream</a>
+                <span>|</span>
+                <a href="#contact" class="hover:text-amber-400 transition-colors">Prayer Requests</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-church-500 to-church-700 text-white flex items-center justify-center shadow-md shadow-church-500/20 group-hover:scale-105 transition-transform">
+                        <i data-lucide="cross" class="w-6 h-6 stroke-[2.5]"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-xl text-slate-900 tracking-tight block leading-tight">KAJIADO IMARIKA DELIVERENCE CHURCH</span>
+                        <span class="text-[10px] font-semibold tracking-widest text-church-500 uppercase block">Community Church</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-600 hover:bg-slate-50 transition-colors">Home</a>
+                    <a href="#about" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-600 hover:bg-slate-50 transition-colors">About Us</a>
+                    <a href="#events" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-600 hover:bg-slate-50 transition-colors">Events & Services</a>
+                    <a href="#sermons" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-600 hover:bg-slate-50 transition-colors">Sermons</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-church-600 hover:bg-slate-50 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Action Button & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openGiveModal()" class="inline-flex items-center gap-2 bg-church-600 hover:bg-church-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md shadow-church-600/30 hover:shadow-lg transition-all active:scale-95">
+                        <i data-lucide="heart" class="w-4 h-4 text-amber-300 fill-amber-300"></i>
+                        <span>Give Online</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 shadow-xl">
+            <a href="#home" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-600">Home</a>
+            <a href="#about" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-600">About Us</a>
+            <a href="#events" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-600">Events & Services</a>
+            <a href="#sermons" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-600">Sermons</a>
+            <a href="#contact" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-church-50 hover:text-church-600">Contact</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-slate-900 text-white overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=2000&q=80" 
+                 alt="Church interior lighting background" 
+                 class="w-full h-full object-cover object-center scale-105 animate-pulse" 
+                 style="animation-duration: 10s;"
+                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1e293b/ffffff?text=Welcome+To+Kajiado+Imarika+Deliverence+Church';">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-medium mb-6">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> Welcome to Kajiado Imarika Deliverence Church
+            </span>
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                A Place to Belong, <br class="hidden sm:inline"/> Grow, & Live with Purpose.
+            </h1>
+            <p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                Join us every Sunday as we gather to worship, explore God’s Word, and serve our local community together in love.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#events" class="w-full sm:w-auto px-8 py-4 rounded-full bg-church-500 hover:bg-church-600 text-white font-semibold text-base shadow-lg shadow-church-500/40 hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                    Plan Your Visit
+                </a>
+                <a href="#sermons" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base backdrop-blur-md border border-white/30 transition-all">
+                    Watch Latest Service
+                </a>
+            </div>
+
+            <!-- Service Countdown Card -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 max-w-xl mx-auto">
+                <p class="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-3">Countdown to Next Service</p>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                    <div class="bg-slate-900/60 rounded-xl p-3 border border-white/5">
+                        <span id="cd-days" class="font-serif text-2xl sm:text-4xl font-bold text-white block">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider">Days</span>
+                    </div>
+                    <div class="bg-slate-900/60 rounded-xl p-3 border border-white/5">
+                        <span id="cd-hours" class="font-serif text-2xl sm:text-4xl font-bold text-white block">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider">Hours</span>
+                    </div>
+                    <div class="bg-slate-900/60 rounded-xl p-3 border border-white/5">
+                        <span id="cd-minutes" class="font-serif text-2xl sm:text-4xl font-bold text-white block">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider">Mins</span>
+                    </div>
+                    <div class="bg-slate-900/60 rounded-xl p-3 border border-white/5">
+                        <span id="cd-seconds" class="font-serif text-2xl sm:text-4xl font-bold text-white block">00</span>
+                        <span class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wider">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Community gathering" 
+                             class="w-full h-[450px] object-cover"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x600/e2e8f0/334155?text=Church+Community';">
+                    </div>
+                    <!-- Experience Tag Badge -->
+                    <div class="absolute -bottom-6 -right-6 hidden sm:flex bg-church-600 text-white p-6 rounded-2xl shadow-xl flex-col justify-center items-center max-w-[200px] text-center">
+                        <span class="font-serif text-4xl font-bold">25+</span>
+                        <span class="text-xs text-amber-200 mt-1 uppercase font-medium">Years Serving Our Community</span>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 text-church-600 font-semibold text-sm tracking-wider uppercase">
+                        <i data-lucide="heart-handshake" class="w-4 h-4"></i> Who We Are
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                        Loving God, Loving People, and Serving Our City.
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        At Kajiado Imarika Deliverence Church, we believe that faith is a journey best traveled together. No matter where you are in your spiritual walk, you are welcome here. We are a Christ-centered community committed to authentic relationships, biblical teaching, and meaningful outreach.
+                    </p>
+
+                    <!-- Core Values Grid -->
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="book-open" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-900 mb-1">Biblical Truth</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed">Grounded in timeless scripture for modern life.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-900 mb-1">Authentic Community</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed">Building genuine, lifelong connections together.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="hand-heart" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-900 mb-1">Compassionate Service</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed">Extending God's love to those in need nearby.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="smile" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-900 mb-1">Next Generation</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed">Empowering kids and youth to thrive in faith.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS & SERVICES SECTION -->
+    <section id="events" class="py-20 bg-slate-50 border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-church-600 font-semibold text-sm tracking-wider uppercase block mb-2">Gatherings & Events</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Upcoming Opportunities</h2>
+                </div>
+
+                <!-- Event Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+                    <button onclick="filterEvents('all')" class="event-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-church-600 text-white transition-all shadow-sm">All Events</button>
+                    <button onclick="filterEvents('services')" class="event-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 transition-all border border-slate-200">Services</button>
+                    <button onclick="filterEvents('youth')" class="event-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 transition-all border border-slate-200">Youth</button>
+                    <button onclick="filterEvents('outreach')" class="event-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 transition-all border border-slate-200">Outreach</button>
+                </div>
+            </div>
+
+            <!-- Events List -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="event-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200/80 flex flex-col" data-category="services">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1510519138161-58446232811f?auto=format&fit=crop&w=800&q=80" 
+                             alt="Sunday Service" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/334155?text=Sunday+Worship';">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-center shadow">
+                            <span class="block text-xs font-bold text-church-600 uppercase">SUN</span>
+                            <span class="block font-serif text-lg font-bold text-slate-900 leading-none">EVERY</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-800 mb-3">Worship Service</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-church-600 transition-colors mb-2">Sunday Celebration Worship</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">Inspiring message, uplifting modern worship music, and dynamic kids programs available.</p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-slate-400"></i> 8:00 AM & 11:00 AM</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Main Sanctuary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200/80 flex flex-col" data-category="youth">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                             alt="Youth Night" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/334155?text=Youth+Gathering';">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-center shadow">
+                            <span class="block text-xs font-bold text-church-600 uppercase">FRI</span>
+                            <span class="block font-serif text-lg font-bold text-slate-900 leading-none">14</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-blue-100 text-blue-800 mb-3">Youth Ministry</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-church-600 transition-colors mb-2">Elevate Student Night</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">Games, food, music, and honest conversations for middle and high school students.</p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-slate-400"></i> 6:30 PM - 8:30 PM</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Youth Center</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200/80 flex flex-col" data-category="outreach">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80" 
+                             alt="Community Outreach" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/334155?text=Food+Drive';">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-center shadow">
+                            <span class="block text-xs font-bold text-church-600 uppercase">SAT</span>
+                            <span class="block font-serif text-lg font-bold text-slate-900 leading-none">22</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 mb-3">Community Outreach</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-church-600 transition-colors mb-2">City Hope Food Drive</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">Partnering with local shelters to pack and distribute groceries to local families.</p>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-slate-400"></i> 10:00 AM - 2:00 PM</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i> Fellowship Hall</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERMON MEDIA SECTION -->
+    <section id="sermons" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase block mb-2">Spiritual Growth</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Recent Sermons</h2>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 text-slate-300 hover:text-white text-sm font-medium mt-4 md:mt-0 group">
+                    Subscribe on YouTube <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Featured Sermon Banner -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-800/80 border border-slate-700/60 rounded-3xl p-6 md:p-8 mb-12 flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden group cursor-pointer" onclick="openSermonModal('Walking in Hope', 'Rev. Hastings Chome', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80" 
+                         alt="Current Sermon Series" 
+                         class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x500/0f172a/ffffff?text=Featured+Sermon';">
+                    <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors flex items-center justify-center">
+                        <div class="w-16 h-16 rounded-full bg-church-500 text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-8 h-8 fill-white ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 space-y-4">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-church-500/20 text-church-200 border border-church-500/30">Current Series</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Walking in Hope: Navigating Life’s Seasons</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        In this powerful message, Rev. Hastings Chome explores how grounding our faith in eternal promises gives us strength to endure current trials with joy and resilience.
+                    </p>
+                    <div class="flex items-center gap-4 text-xs text-slate-400 pt-2">
+                        <span class="flex items-center gap-1"><i data-lucide="user" class="w-3.5 h-3.5 text-amber-400"></i> Rev. Hastings Chome</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-400"></i> Oct 27, 2026</span>
+                    </div>
+                    <div class="pt-4 flex items-center gap-3">
+                        <button onclick="openSermonModal('Walking in Hope', 'Rev. Hastings Chome', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="px-5 py-2.5 rounded-full bg-church-500 hover:bg-church-600 text-white text-xs font-semibold flex items-center gap-2 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-white"></i> Watch Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sermon Archive Grid -->
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Sermon Card 1 -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative rounded-xl overflow-hidden mb-4 group cursor-pointer" onclick="openSermonModal('The Power of Prayer', 'Rev. Hastings Chome', '')">
+                            <img src="https://images.unsplash.com/photo-1544427920-c49ccfb85579?auto=format&fit=crop&w=600&q=80" alt="Sermon Thumbnail" class="w-full h-40 object-cover group-hover:scale-105 transition-transform">
+                            <div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
+                                <div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center">
+                                    <i data-lucide="play" class="w-5 h-5 fill-slate-900 ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">The Power of Prayer in Trials</h4>
+                        <p class="text-xs text-slate-400 mb-3">Rev. Hastings Chome • Oct 20, 2026</p>
+                    </div>
+                    <button onclick="openSermonModal('The Power of Prayer', 'Rev. Hastings Chome', '')" class="text-xs text-amber-400 font-semibold hover:text-amber-300 flex items-center gap-1">
+                        Listen / Watch <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <!-- Sermon Card 2 -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative rounded-xl overflow-hidden mb-4 group cursor-pointer" onclick="openSermonModal('Faithful Stewardship', 'Elder Baba Issah', '')">
+                            <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?auto=format&fit=crop&w=600&q=80" alt="Sermon Thumbnail" class="w-full h-40 object-cover group-hover:scale-105 transition-transform">
+                            <div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
+                                <div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center">
+                                    <i data-lucide="play" class="w-5 h-5 fill-slate-900 ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">Faithful Stewardship</h4>
+                        <p class="text-xs text-slate-400 mb-3">Elder Baba Issah • Oct 13, 2026</p>
+                    </div>
+                    <button onclick="openSermonModal('Faithful Stewardship', 'Elder Baba Issah', '')" class="text-xs text-amber-400 font-semibold hover:text-amber-300 flex items-center gap-1">
+                        Listen / Watch <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+
+                <!-- Sermon Card 3 -->
+                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative rounded-xl overflow-hidden mb-4 group cursor-pointer" onclick="openSermonModal('Grace Abounding', 'Rev. Hastings Chome', '')">
+                            <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=600&q=80" alt="Sermon Thumbnail" class="w-full h-40 object-cover group-hover:scale-105 transition-transform">
+                            <div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
+                                <div class="w-10 h-10 rounded-full bg-white/90 text-slate-900 flex items-center justify-center">
+                                    <i data-lucide="play" class="w-5 h-5 fill-slate-900 ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">Grace Abounding</h4>
+                        <p class="text-xs text-slate-400 mb-3">Rev. Hastings Chome • Oct 06, 2026</p>
+                    </div>
+                    <button onclick="openSermonModal('Grace Abounding', 'Rev. Hastings Chome', '')" class="text-xs text-amber-400 font-semibold hover:text-amber-300 flex items-center gap-1">
+                        Listen / Watch <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+                <!-- Info Column -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-church-600 font-semibold text-sm tracking-wider uppercase block mb-2">Connect With Us</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">We’d Love to Hear From You</h2>
+                        <p class="text-slate-600 mt-3 text-sm leading-relaxed">
+                            Have questions, need prayer, or want to learn more about Kajiado Imarika Deliverence? Reach out to our team using the form or contact details below.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Church Address</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">178-80105, Kaloleni</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Phone Number</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">(254) 720 827 646</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Email Address</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">info@kajiadoimarikadeliverence.org</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-church-50 text-church-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm">Service Times</h4>
+                                <p class="text-xs text-slate-600 mt-0.5">Sunday Services: 8:00 AM & 11:00 AM</p>
+                                <p class="text-xs text-slate-600">Wednesday Prayer: 7:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm">
+                    <h3 class="font-serif text-xl font-bold text-slate-900 mb-6">Send Us a Message</h3>
+                    
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">First Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none bg-white">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Subject</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none bg-white">
+                                <option>General Inquiry</option>
+                                <option>Prayer Request</option>
+                                <option>First Time Guest</option>
+                                <option>Volunteering Opportunities</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Message</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none bg-white"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-church-600 hover:bg-church-700 text-white font-semibold text-sm shadow-md shadow-church-600/20 transition-all">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Success Message Box -->
+                    <div id="contact-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm text-center">
+                        Thank you! Your message has been sent. We will get back to you shortly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-church-500 text-white flex items-center justify-center">
+                            <i data-lucide="cross" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-serif font-bold text-lg text-white">KAJIADO IMARIKA DELIVERENCE
+                        </span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400">
+                        A welcoming community rooted in love, faith, and hope. Join us as we serve our city and share the Gospel.
+                    </p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-white transition-colors">Our Beliefs</a></li>
+                        <li><a href="#events" class="hover:text-white transition-colors">Service Times</a></li>
+                        <li><a href="#sermons" class="hover:text-white transition-colors">Sermon Archives</a></li>
+                        <li><a href="#events" class="hover:text-white transition-colors">Calendar & Events</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Ministries</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition-colors">Grace Kids Program</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Elevate Student Ministry</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Small Life Groups</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Outreach & Missions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Connect With Us</h4>
+                    <div class="flex gap-3 mb-4">
+                        <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-church-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-800">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-church-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-800">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-slate-900 hover:bg-church-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-800">
+                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <p class="text-xs text-slate-500">Subscribe for weekly sermon updates and announcements.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-8 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Kajiado Imarika Deliverence. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ONLINE GIVING MODAL -->
+    <div id="give-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeGiveModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-church-50 text-church-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="heart" class="w-6 h-6 fill-church-600"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-slate-900">Support Our Ministry</h3>
+                <p class="text-xs text-slate-500 mt-1">Thank you for your generosity and faithful stewardship.</p>
+            </div>
+
+            <!-- Giving Form -->
+            <form id="giving-form" onsubmit="handleGiveSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Select Amount</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button type="button" onclick="setGiveAmount(25, this)" class="give-amt-btn border border-slate-200 rounded-xl py-2 text-sm font-semibold hover:border-church-500 text-slate-700">$25</button>
+                        <button type="button" onclick="setGiveAmount(50, this)" class="give-amt-btn border border-slate-200 rounded-xl py-2 text-sm font-semibold hover:border-church-500 text-slate-700 bg-church-50 border-church-500 text-church-600">$50</button>
+                        <button type="button" onclick="setGiveAmount(100, this)" class="give-amt-btn border border-slate-200 rounded-xl py-2 text-sm font-semibold hover:border-church-500 text-slate-700">$100</button>
+                        <button type="button" onclick="setGiveAmount(250, this)" class="give-amt-btn border border-slate-200 rounded-xl py-2 text-sm font-semibold hover:border-church-500 text-slate-700">$250</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Custom Amount ($)</label>
+                    <input type="number" id="custom-amount" value="50" min="1" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Giving Fund</label>
+                    <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-church-500 focus:outline-none">
+                        <option>General Tithes & Offerings</option>
+                        <option>Building & Renovation Fund</option>
+                        <option>Missions & Outreach</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-church-600 hover:bg-church-700 text-white font-semibold text-sm shadow-lg shadow-church-600/30 transition-all mt-4">
+                    Proceed to Secure Payment
+                </button>
+            </form>
+
+            <div id="give-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm text-center">
+                Thank you for your gift! You will be redirected to complete payment.
+            </div>
+        </div>
+    </div>
+
+    <!-- SERMON VIDEO PLAYER MODAL -->
+    <div id="sermon-modal" class="fixed inset-0 z-50 hidden bg-slate-900/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full p-4 sm:p-6 shadow-2xl relative">
+            <button onclick="closeSermonModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 id="modal-sermon-title" class="font-serif text-xl font-bold text-white mb-1">Sermon Title</h3>
+            <p id="modal-sermon-speaker" class="text-xs text-amber-400 mb-4">Speaker</p>
+            
+            <div class="relative pt-[56.25%] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                <iframe id="sermon-iframe" class="absolute inset-0 w-full h-full" src="" title="Sermon Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Navigation Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Sunday Service Countdown Timer Logic
+        function updateCountdown() {
+            const now = new Date();
+            let nextSunday = new Date();
+            nextSunday.setDate(now.getDate() + ((7 - now.getDay()) % 7));
+            nextSunday.setHours(9, 0, 0, 0);
+
+            if (now > nextSunday) {
+                nextSunday.setDate(nextSunday.getDate() + 7);
+            }
+
+            const diff = nextSunday - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Event Filtering Logic
+        function filterEvents(category) {
+            const cards = document.querySelectorAll('.event-card');
+            const btns = document.querySelectorAll('.event-filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-church-600', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-600');
+            event.target.classList.add('bg-church-600', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Giving Modal Toggle Logic
+        function openGiveModal() {
+            document.getElementById('give-modal').classList.remove('hidden');
+        }
+
+        function closeGiveModal() {
+            document.getElementById('give-modal').classList.add('hidden');
+            document.getElementById('give-success').classList.add('hidden');
+        }
+
+        function setGiveAmount(amount, btnElement) {
+            document.getElementById('custom-amount').value = amount;
+            document.querySelectorAll('.give-amt-btn').forEach(b => {
+                b.classList.remove('bg-church-50', 'border-church-500', 'text-church-600');
+            });
+            btnElement.classList.add('bg-church-50', 'border-church-500', 'text-church-600');
+        }
+
+        function handleGiveSubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('give-success');
+            successMsg.classList.remove('hidden');
+            setTimeout(() => {
+                closeGiveModal();
+            }, 2500);
+        }
+
+        // Sermon Media Modal Logic
+        function openSermonModal(title, speaker, videoUrl) {
+            document.getElementById('modal-sermon-title').innerText = title;
+            document.getElementById('modal-sermon-speaker').innerText = speaker;
+            document.getElementById('sermon-iframe').src = videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+            document.getElementById('sermon-modal').classList.remove('hidden');
+        }
+
+        function closeSermonModal() {
+            document.getElementById('sermon-modal').classList.add('hidden');
+            document.getElementById('sermon-iframe').src = '';
+        }
+
+        // Contact Form Submission Handler
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('contact-success');
+            successMsg.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
