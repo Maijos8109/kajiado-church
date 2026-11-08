@@ -1,0 +1,5 @@
+.env
+church.db
+church.db-shm
+church.db-wal
+__pycache__/

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Church Admin Inbox</title>
+    <style>
+        body { margin: 0; padding: 2rem; background: #f8fafc; color: #0f172a; font: 16px/1.5 Arial, sans-serif; }
+        main { max-width: 1000px; margin: auto; }
+        h1, h2 { color: #5a271c; }
+        form { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.5rem; }
+        input, button { padding: .7rem; border: 1px solid #cbd5e1; border-radius: .5rem; font: inherit; }
+        input { flex: 1; min-width: 16rem; }
+        button { cursor: pointer; background: #853d2b; color: white; }
+        article { margin: .75rem 0; padding: 1rem; border: 1px solid #e2e8f0; border-radius: .75rem; background: white; }
+        article p { white-space: pre-wrap; overflow-wrap: anywhere; }
+        .muted, #status { color: #475569; }
+        .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Church Admin Inbox</h1>
+    <p class="muted">Enter the admin API token configured on the backend. The token stays in this browser tab.</p>
+    <form id="login">
+        <input id="token" type="password" autocomplete="current-password" placeholder="Admin API token" required>
+        <button type="submit">Open inbox</button>
+        <button id="logout" type="button">Clear token</button>
+    </form>
+    <p id="status" role="status"></p>
+    <section>
+        <div class="section-head"><h2>Messages and prayer requests</h2><button type="button" data-refresh="messages">Refresh</button></div>
+        <div id="messages"></div>
+    </section>
+    <section>
+        <div class="section-head"><h2>Donations</h2><button type="button" data-refresh="donations">Refresh</button></div>
+        <div id="donations"></div>
+    </section>
+</main>
+<script>
+    const tokenField = document.getElementById('token');
+    const statusText = document.getElementById('status');
+    const tokenKey = 'churchAdminToken';
+
+    function showItems(targetId, items, type) {
+        const container = document.getElementById(targetId);
+        container.replaceChildren();
+        if (!items.length) {
+            const empty = document.createElement('p');
+            empty.className = 'muted';
+            empty.textContent = 'No records yet.';
+            container.append(empty);
+            return;
+        }
+        for (const item of items) {
+            const card = document.createElement('article');
+            const heading = document.createElement('strong');
+            heading.textContent = type === 'message'
+                ? `${item.subject} — ${item.first_name} ${item.last_name}`
+                : `${item.status.toUpperCase()} — KES ${item.amount_kes} — ${item.fund}`;
+            card.append(heading);
+            const details = document.createElement('p');
+            details.textContent = type === 'message'
+                ? `${item.email}\n${item.created_at}\n\n${item.message}`
+                : `Phone: ${item.phone}\nReceipt: ${item.receipt_number || '—'}\nCreated: ${item.created_at}`;
+            card.append(details);
+            container.append(card);
+        }
+    }
+
+    async function loadItems(type) {
+        const token = tokenField.value || sessionStorage.getItem(tokenKey) || '';
+        if (!token) {
+            statusText.textContent = 'Enter the admin API token first.';
+            return;
+        }
+        try {
+            const response = await fetch(`/api/admin/${type}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Could not load records.');
+            showItems(type, result.items, type === 'messages' ? 'message' : 'donation');
+            statusText.textContent = 'Inbox updated.';
+        } catch (error) {
+            statusText.textContent = error.message || 'Could not reach the backend.';
+        }
+    }
+
+    document.getElementById('login').addEventListener('submit', event => {
+        event.preventDefault();
+        sessionStorage.setItem(tokenKey, tokenField.value);
+        loadItems('messages');
+        loadItems('donations');
+    });
+    document.getElementById('logout').addEventListener('click', () => {
+        sessionStorage.removeItem(tokenKey);
+        tokenField.value = '';
+        document.getElementById('messages').replaceChildren();
+        document.getElementById('donations').replaceChildren();
+        statusText.textContent = 'Token cleared.';
+    });
+    document.querySelectorAll('[data-refresh]').forEach(button => {
+        button.addEventListener('click', () => loadItems(button.dataset.refresh));
+    });
+    tokenField.value = sessionStorage.getItem(tokenKey) || '';
+</script>
+</body>
+</html>
